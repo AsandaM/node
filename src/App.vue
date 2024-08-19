@@ -1,6 +1,7 @@
 <template>
 
   <div class="wrapper">
+    <HeaderComp />
     <NavBar />
     <main>
       <router-view />
@@ -11,10 +12,12 @@
 
 <script>
 import NavBar from './components/NavBar.vue'
+import HeaderComp from './components/Header.vue'
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    HeaderComp
   } 
 }
 
