@@ -12,36 +12,32 @@
             </div>
             
             <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
+              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="nav-item mt-2">
                   <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
                 </li>
                 <li class="nav-item dropdown mt-2">
-                    <router-link class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                      Collection
-                    </router-link>
+                    </a>
                     <ul class="dropdown-menu">
-                      <li><router-link to="/newproducts" class="dropdown-item" href="#new">New</router-link></li>
-                      <li><router-link to="/products" class="dropdown-item" href="#all">Shop All</router-link></li>
+                      <li><router-link to="/newproducts" class="dropdown-item">New</router-link></li>
+                      <li><router-link to="/products" class="dropdown-item">Shop All</router-link></li>
                     </ul>
                   </li>
                   <li class="nav-item mt-2">
-                    <a class="nav-link" aria-current="page" href="#ourStory">Our Story</a>
+                    <router-link to="/about" class="nav-link" aria-current="page">Our Story</router-link>
                   </li>
                   <li class="nav-item mt-2">
-                    <a class="nav-link" aria-current="page" href="#admin">Admin</a>
+                    <router-link to="/admin" class="nav-link" aria-current="page">Admin</router-link>
                   </li>
                   <li class="nav-item mt-2">
-                    <a class="nav-link" aria-current="page" href="#contact">Contact</a>
+                    <router-link to="/contact" class="nav-link" aria-current="page">Contact</router-link>
                   </li>
               </ul>
               
 
-              <ul class="navbar-nav justify-content-end">
-                <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#account"><i class="bi bi-person"></i></a>
-              </li>
-              </ul>
+              
             </div>
     
           </div>
@@ -54,5 +50,48 @@
 </script>
 
 <style scoped>
+img[alt='logo']{
+    width: 15rem;
+    object-fit: cover;
+    object-position: center;
+    transition: all .5s;
+}
 
+img[alt='logo']:hover{
+  transform: scale(1.1);
+}
+
+.nav-link{
+    color: black;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+}
+
+.nav-link:hover{
+    color: #5D7599; 
+}
+
+.navbar{
+    transition: all 0.5s;
+}
+
+.nav-link i{
+    font-size: 1.5rem;
+}
+
+:is(.dropdown-item:active){
+    background-color: #5D7599;
+}
+
+@media (width < 999px)
+{ 
+  .navbar-nav{
+    text-align: left;
+    margin-left: 1rem;
+  }
+
+    img[alt='logo']{
+      width: 12rem;
+    }
+}
 </style>
