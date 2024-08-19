@@ -12,7 +12,7 @@
             </div>
             
             <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <ul class="navbar-nav justify-content-end flex-grow-1">
                 <li class="nav-item mt-2">
                   <router-link class="nav-link" aria-current="page" to="/">Home</router-link>
                 </li>
@@ -24,6 +24,9 @@
                       <li><router-link to="/newproducts" class="dropdown-item">New</router-link></li>
                       <li><router-link to="/products" class="dropdown-item">Shop All</router-link></li>
                     </ul>
+                  </li>
+                  <li class="nav-item mt-2">
+                    <router-link to="/blog" class="nav-link" aria-current="page">Skin Blog</router-link>
                   </li>
                   <li class="nav-item mt-2">
                     <router-link to="/about" class="nav-link" aria-current="page">Our Story</router-link>
@@ -71,6 +74,11 @@ img[alt='logo']:hover{
     color: #5D7599; 
 }
 
+.nav-item{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
 .navbar{
     transition: all 0.5s;
 }
@@ -92,6 +100,11 @@ img[alt='logo']:hover{
 
     img[alt='logo']{
       width: 12rem;
+    }
+
+    .nav-item{
+      margin-right: 0rem;
+      margin-left: 0rem;
     }
 }
 </style>
