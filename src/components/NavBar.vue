@@ -21,8 +21,8 @@
                      Collection
                     </router-link>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#new">New</a></li>
-                      <li><a class="dropdown-item" href="#all">Shop All</a></li>
+                      <li><router-link to="/newproducts" class="dropdown-item" href="#new">New</router-link></li>
+                      <li><router-link to="/products" class="dropdown-item" href="#all">Shop All</router-link></li>
                     </ul>
                   </li>
                   <li class="nav-item mt-2">
