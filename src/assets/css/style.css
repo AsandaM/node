@@ -1,0 +1,46 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* custom variables */
+:root{
+  --primary: black;
+  --secondary: white;
+  --alternative: #95AFD8;
+  --awesome: #5D7599;
+}
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Display - grid */
+:is(#app) {
+  display: grid;
+}
+
+
+/* APP */
+#app {
+  grid-template-rows: auto minmax(100dvh, 100%) auto;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+}
+
+body {
+  scroll-behavior: smooth;
+}
+
+
+
