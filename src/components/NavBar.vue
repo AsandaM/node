@@ -26,9 +26,6 @@
                     </ul>
                   </li>
                   <li class="nav-item mt-2">
-                    <router-link to="/blog" class="nav-link" aria-current="page">Skin Blog</router-link>
-                  </li>
-                  <li class="nav-item mt-2">
                     <router-link to="/about" class="nav-link" aria-current="page">Our Story</router-link>
                   </li>
                   <li class="nav-item mt-2">
