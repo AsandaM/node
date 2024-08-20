@@ -38,7 +38,7 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <div class="overlay"></div>
-      <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/wrinkleSkin.png" alt="slideImage" loading="eager">
+      <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/wrinklesBanner3.png" alt="slideImage" loading="eager">
       <div class="carousel-caption2">
         <h1 class="animate__animated animate__fadeInUp">Reveal Your Youthful Glow: Say Goodbye to Wrinkles</h1>
         <p class="animate__animated animate__fadeInUp">Fine lines and wrinkles don’t stand a chance with our advanced skincare solutions. Packed with powerful ingredients, our products are designed to rejuvenate and nourish your skin, leaving it smooth, firm, and radiant.</p>
@@ -116,6 +116,8 @@ export default {
     }
     
     .heading{
+      padding-top: 3rem;
+      padding-bottom: 2rem;
       font-family: "Montserrat", sans-serif;
       font-weight: bold;
       color: var(--primary);
@@ -132,6 +134,7 @@ export default {
       display: flex;
       justify-content: center;
       gap: 3.5rem;
+      padding-bottom: 3rem;
     }
     
     .circle {
@@ -194,8 +197,17 @@ export default {
   font-weight: 300;
 }
 
+.home-blog{
+  padding-bottom: 3rem;
+}
+
 .home-blog .carousel-item{
   cursor: pointer;
+}
+
+img[alt="slideImage2"] {
+  width: 100%;
+  height: 82vh;
 }
 
 .card{
@@ -209,6 +221,7 @@ export default {
   justify-content: center;
   padding-top: 1.5rem;
   gap: 3.5rem;
+  padding-bottom: 6rem;
 }
 
 .ourStoryCards .card-title{

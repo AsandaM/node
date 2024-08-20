@@ -1,13 +1,13 @@
 <template>
     <div class="container-fluid">
         <div class="home-shopNew">
-          <h1 class="pt-3 heading">Shop our New</h1>
+          <h1 class="heading">Shop our New</h1>
             <div class="cardsDiv pt-3 pb-3"  v-if="homeRecentProducts">
               
               <Card v-for="product in homeRecentProducts" :key="product.prodID">
-            
+                
                 <template #cardHeader>
-                <img :src="product.prodUrl" :alt="product.prodName" loading="eager" class="img-fluid">
+                <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid">
                 </template>
         
                 <template #cardBody>
@@ -93,9 +93,10 @@ import Card from './Card.vue'
       color: var(--primary);
       font-weight: bold;
       font-family: "Montserrat", sans-serif;
-      margin-top: 0.5rem;
+      margin-top: 1rem;
       cursor: pointer; 
       text-decoration: none;
+      margin-bottom: 3rem;
     }
 
     .btn-shopNew:hover{
