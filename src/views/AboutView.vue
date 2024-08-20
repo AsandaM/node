@@ -1,5 +1,123 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <div class="container-fluid" id="ourStory">
+      <div class="row">
+        <div class="banner-overlay"></div>
+        <div class="banner-image">
+            <div class="banner-content">
+            <h3 class="animate__animated animate__fadeInDown">Our Story</h3>
+            <p class="animate__animated animate__fadeInUp">At Skin Oasis, we believe that skincare should be more than just a routine. Our story began with a passion for natural ingredients and a commitment to sustainability. We set out to create products that not only enhance your skin’s natural beauty but also respect the environment!</p>
+            </div> 
+       </div>
+      </div>
+    </div>
+
+    <div class="container-fluid" id="peta-approved">
+      <div class="row">
+
+        <div class="content-alignment">
+          <div class="imgDiv">
+            <img src="https://leahbasson.github.io/MyImages/skincareWebsite/meerkats2.png" alt="ourStoryImage" class="img-fluid">
+          </div>
+          <div class="mainText-Right">
+            <h3>PETA  Approved</h3>
+            <p class="text-left">At Skin Oasis, it's a given that compassion is at the heart of everything we do. We want you to know that when you choose our products, you're making a choice that aligns with ethical values and respect for all living beings.</p>
+            <p class="text-left fw-bold">Our Promise to Animals:</p>
+            <p class="text-left"><span class="fw-bold">Cruelty-Free Ethics: </span>We proudly declare that no product in our range, from formulation to the supply chain, has ever been tested on animals. It's an unwavering commitment we've held from day one.</p>
+            <p class="text-left"><span class="fw-bold">PETA Endorsement: </span>Our dedication to animal welfare is acknowledged by PETA, a leading voice in animal rights. Their endorsement guarantees that our products are not just animal-loving but also cruelty-free.</p>
+          </div>
+        </div>
+
+        <div class="content-alignment">
+          <div class="mainText-Right">
+            <h3>Protect Our Planet</h3>
+            <p class="text-left">At Skin Oasis we believe that beauty shouldn’t come at the cost of our environment. That’s why we’re committed to sustainable practices every step of the way from sourcing eco-friendly ingredients to using recyclable packaging.</p>
+            <p class="text-left fw-bold">Our Promise to the Forest:</p>
+            <p class="text-left"><span class="fw-bold">Community Empowerment:  </span>Our dedication extends beyond conservation; it’s about people, too. By safeguarding the forest, we empower local communities, particularly those whose livelihoods depend on these natural resources. </p>
+            <p class="text-left"><span class="fw-bold">Environment and Livelihood: </span>We support sustainable forestry practices, to enrich the environment for who call the forest home. </p>
+          </div>
+          <div class="imgDiv">
+            <img src="https://leahbasson.github.io/MyImages/skincareWebsite/forest2.png" alt="ourStoryImage" class="img-fluid">
+          </div>
+        </div>
+
+      </div>
+    </div>
 </template>
+
+<style scoped>
+#ourStory{
+  position: relative;
+  z-index: 1;
+}
+
+.banner-image{
+    background-image: url("https://leahbasson.github.io/MyImages/skincareWebsite/skincareBanner9.jpg");
+    background-size: cover;
+    background-position: center; 
+    position: relative;
+}
+
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); 
+    z-index: 1;
+}
+
+.banner-content{
+  position: relative;
+  z-index: 2;
+  width: 44rem;
+  margin: 14rem auto 14rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--secondary);
+}
+
+.banner-content h3 {
+    font-weight: 600;
+    z-index: 2;
+} 
+
+.banner-content p{
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+img[alt="ourStoryImage"]{
+  width: 30rem;
+}
+
+.content-alignment{
+  width: 65%;
+  display: flex;
+  justify-content: space-between;
+  margin: auto;
+  padding-top: 6rem;
+  padding-bottom: 5rem;
+  color: var(--primary);
+}
+
+.mainText-Right{
+  width: 28rem;
+  font-family: "Poppins",sans-serif;
+}
+
+.text-left{
+  text-align: left;
+}
+
+@media (width < 999px)
+{
+  img[alt="banner-img"]{
+    width: 80%;
+  }
+
+  .banner-content{
+    width: 18rem;
+    margin: 6rem auto 6rem;
+  }
+}
+</style>

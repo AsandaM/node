@@ -18,8 +18,14 @@
         <button type="button" class="admin-button" data-bs-toggle="modal" data-bs-target="#addProductModal">
           Add New Product
         </button>
+        </div>
+        
+      </div>
+    </div>
 
-<!-- Modal -->
+    <div class="container-fluid">
+      <div class="row">
+        <!-- Modal -->
         <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -62,11 +68,31 @@
             </div>
           </div>
         </div>
-        </div>
+
+        <div class="spinnerDiv"></div>
+
+        <div class="tableContainer">
+              <table>
+                <thead>
+                 <th>Product Name</th>
+                 <th>Category</th>
+                 <th>Image</th>
+                 <th>Amount</th>
+                 <th>Action</th>
+                </thead>
+                <tbody data>
+     
+                </tbody>
+             </table>
+            </div>
+
+
       </div>
     </div>
-  </template>
 
+    
+
+  </template>
 
 
 <style scoped>
@@ -169,6 +195,60 @@
   justify-content: space-between;
 }
 
+/* Table Styling*/
+th, td{
+    border: 1px solid black;
+    padding: 0.6rem 2rem;
+    margin: 0;
+}
+
+table{
+  width: 63.5%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+.adminImages{
+    width: 30%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    object-position: center;
+}
+
+.btnEdit{
+    padding: 0.5rem 2.1rem;
+    background-color: var(--alternative);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+}
+
+.btnDelete{
+    padding: 0.5rem 1.5rem;
+    background-color: var(--alternative);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+}
+
+#addProductForm #name_error,#category_error{
+    display: none;
+}
+
+.btnModal{
+    padding: 0.5rem 2.1rem;
+    background-color: var(--alternative);
+    color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 0.5rem;
+    width: 14vw;
+    margin: auto;
+}
+
+
+
+
+
 @media (width < 999px)
 {
   img[alt="banner-img"]{
@@ -177,7 +257,7 @@
 
   .banner-content{
     width: 18rem;
-    margin: 12rem auto 12rem;
+    margin: 14rem auto 14rem;
   }
 
   .admin-button{
@@ -190,6 +270,67 @@
   justify-content: center;
   flex-direction: column; 
   gap: 1rem;
+}
+
+.adminImages{
+    width: 6rem;
+}
+
+table{
+  width: 64%;
+  margin: auto;
+  margin-top: 2rem;
+}
+
+th, td{
+    border: 1px solid black;
+    padding: 0.6rem 0.8rem;
+    margin: 0;
+}
+
+.tableContainer table, thead, tbody, th, td, tr {
+    display: block;
+}
+
+.tableContainer table {
+    margin-bottom: 5rem;
+}
+
+.tableContainer thead tr {
+    display: none;
+}
+
+.tableContainer tr {
+    margin-bottom: 15px;
+}
+
+.tableContainer td {
+    position: relative;
+    padding-left: 50%;
+}
+
+.tableContainer td:before {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    transform: translateY(-50%);
+}
+
+.tableContainer td:nth-of-type(1):before { content: "Product Name"; }
+.tableContainer td:nth-of-type(2):before { content: "Category"; }
+.tableContainer td:nth-of-type(3):before { content: "Image"; }
+.tableContainer td:nth-of-type(4):before { content: "Material"; }
+.tableContainer td:nth-of-type(5):before { content: "Amount"; }
+.tableContainer td:nth-of-type(6):before { content: "Action"; }
+.tableContainer .total-row td:before { content: ""; }
+.tableContainer .total-row td:before { content: ""; }
+
+.btnModal{
+    width: 75vw;
+    margin: auto;
 }
 }
 </style>

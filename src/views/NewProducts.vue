@@ -215,7 +215,6 @@ export default {
 
   .banner-content{
     width: 18rem;
-    margin: 3rem auto 6rem;
     margin: 6rem auto 6rem;
   }
 
