@@ -92,7 +92,7 @@
   }
 
   .footerLeftContent{
-    width: 37rem;
+    width: 39rem;
     display: flex;
    flex-direction: column;
    align-items: start;
@@ -111,9 +111,8 @@
 
   .footerRightContent{
     display: flex;
-    justify-content: center;
-    gap: 6.5rem;
-    width: 25rem;
+    justify-content: space-between;
+    width: 22rem;
   }
 
   .footerLeftContent .button1{
