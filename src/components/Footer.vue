@@ -169,7 +169,7 @@
   }
 
   .footerLeftContent{
-    width: 13rem;
+    width: 16rem;
     display: flex;
     justify-content: center;
    flex-direction: column;
@@ -182,7 +182,7 @@
   }
 
   #contactForm{
-    width: 13rem;
+    width: 16rem;
     display: flex;
     justify-content: center;
     gap: 0rem;
@@ -205,13 +205,13 @@
   }
 
   .footerLeftContent .button1{
-     width: 13rem;
+     width: 16rem;
     margin-top: 0.6rem;
     font-size: 0.7rem;
   }
 
   .footerLeftContent .form-control{
-    width: 13rem;
+    width: 16rem;
     font-size: 0.7rem;
   }
 
