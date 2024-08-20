@@ -5,7 +5,6 @@ import { applyToken } from '@/service/AuthenticatedUser.js'
 import { useCookies } from 'vue3-cookies'
 const { cookies } = useCookies()
 import 'vue3-toastify/dist/index.css'
-import router from '@/router'
 
 const apiURL = 'https://fullstack-project-ra29.onrender.com'
 // Should you reload the page after logging in
@@ -47,19 +46,24 @@ export default createStore({
   },
   actions: {
     // ==== Product =====
-    async fetchProducts(context) {
+    async products(context) {
       try {
-        const results = await (await axios.get(`${apiURL}product`)).data
-        if (results) {
+        const res = await axios.get(`${apiURL}/products`) 
+        console.log(res);
+        
+        const results = await res.data
+        
+        if(results) {
           context.commit('setProducts', results)
         } else {
-          router.push({ name: 'login' })
+          toast.error('Please try again later')  , { 
+            autoClose: 2000
+          }  
         }
       } catch (e) {
         toast.error(`${e.message}`, {
-          autoClose: 2000,
-          position: toast.POSITION.BOTTOM_CENTER
-        })
+          autoClose: 2000
+        })  
       }
     },
     async homeRecentProducts(context) {
@@ -105,27 +109,6 @@ export default createStore({
         
       }
     },
-    async addProducts(context) {
-      try {
-        const res = await axios.get(`${apiURL}/products`)
-        console.log(res);
-        
-        const results = await res.data
-        
-        if(results) {
-          context.commit('setaddProducts', results)
-        } else {
-          toast.error('Please try again later')  , {  
-            autoClose: 2000
-          }  
-        }
-      } catch (e) {
-        toast.error(`${e.message}`, {
-          autoClose: 2000
-        })
-        
-      }
-    }
   
   },
   
