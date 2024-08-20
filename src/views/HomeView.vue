@@ -1,19 +1,25 @@
 <template>
   <div>
    <section class="row" id="home">
-    <LandingSection/>
+    <CarouselBanner/>
+    <ShopNewComp />
+    <homeContent/>
    </section>
  </div>  
 </template>
 
 <script>
-import LandingSection from '@/components/LandingSection.vue';
+import homeContent from '@/components/homeContent.vue';
+import CarouselBanner from '@/components/CarouselBanner.vue';
+import ShopNewComp from '@/components/ShopNewComp.vue';
 
 export default {
   name: 'HomeView',
 
   components: {
-   LandingSection
+    homeContent,
+   CarouselBanner,
+   ShopNewComp
   }
   
 }
