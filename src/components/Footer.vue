@@ -134,6 +134,11 @@
   .footerLeftContent .form-control{
     width: 20rem;
     font-size: 1rem;
+    border: 1px solid var(--primary);
+  }
+
+  .footerLeftContent .form-control::placeholder{
+    color: var(--primary);
   }
 
   .footerLeftContent .contact-label{
