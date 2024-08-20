@@ -17,7 +17,8 @@ export default createStore({
     products : null,
     product : null,
     recentProducts: null,
-    homeRecentProducts: null
+    homeRecentProducts: null,
+    addProducts: null
   },
   getters: {
   },
@@ -39,6 +40,9 @@ export default createStore({
     },
     setHomeRecentProducts(state, value) {
       state.homeRecentProducts = value
+    },
+    setaddProducts(state, value) {
+      state.addProducts = value
     }
   },
   actions: {
@@ -89,6 +93,27 @@ export default createStore({
         
         if(results) {
           context.commit('setRecentProducts', results)
+        } else {
+          toast.error('Please try again later')  , {  
+            autoClose: 2000
+          }  
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })
+        
+      }
+    },
+    async addProducts(context) {
+      try {
+        const res = await axios.get(`${apiURL}/products`)
+        console.log(res);
+        
+        const results = await res.data
+        
+        if(results) {
+          context.commit('setaddProducts', results)
         } else {
           toast.error('Please try again later')  , {  
             autoClose: 2000

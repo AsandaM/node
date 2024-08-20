@@ -84,7 +84,7 @@ import Card from './Card.vue'
     }
     
     .btn-shopNew{
-      width: 18rem;
+      width: 16rem;
       margin: auto;
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
@@ -112,6 +112,10 @@ import Card from './Card.vue'
       flex-direction: column;
       gap: 3.5rem;
     }
+
+    .btn-shopNew{
+      width: 16rem;
     }
+  }
 
 </style>

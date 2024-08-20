@@ -259,11 +259,11 @@ img[alt="slideImage2"] {
     }
     
     .circle img{
-      width: 13rem;
+      width: 16rem;
     }
     .circle{
       margin: auto;
-      width: 13rem;
+      width: 16rem;
     }
     .circle-overlay p{
       margin: 5rem auto 2rem;
@@ -295,7 +295,7 @@ img[alt="slideImage2"] {
 }
 
 .card{
-  width: 13rem;
+  width: 16rem;
 }
 
 .ourStoryCards .card-title{

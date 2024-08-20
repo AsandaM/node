@@ -4,8 +4,8 @@
         <div class="banner-overlay"></div>
         <div class="banner-image">
             <div class="banner-content">
-            <h3>Radiant Skin Starts Here</h3>
-            <p>Discover our latest skincare innovations designed to bring out your natural glow. From hydration to anti-aging, our products are crafted with care and backed by science to deliver real results. Elevate your skincare routine with us today!</p>
+            <h3 class="animate__animated animate__fadeInDown">Radiant Skin Starts Here</h3>
+            <p class="animate__animated animate__fadeInUp">Discover our latest skincare innovations designed to bring out your natural glow. From hydration to anti-aging, our products are crafted with care and backed by science to deliver real results. Elevate your skincare routine with us today!</p>
             </div> 
        </div>
       </div>
@@ -218,6 +218,31 @@ export default {
     margin: 3rem auto 6rem;
     margin: 6rem auto 6rem;
   }
+
+  .product-interaction{
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+  gap: 1rem;
+}
+
+.product-display .form-control{
+  width: 16rem;
+  margin: auto;
+}
+
+.product-button{
+  width: 16rem;
+  margin: auto;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  flex-direction: column; 
+  gap: 1rem;
+}
+
 }
 
 
