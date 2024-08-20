@@ -77,7 +77,27 @@ export default createStore({
           autoClose: 2000
         })
         // Toast is used to display an error message
-        console.log(e);
+        
+      }
+    },
+    async recentProducts(context) {
+      try {
+        const res = await axios.get(`${apiURL}/products/recent`) 
+        console.log(res);
+        
+        const results = await res.data
+        
+        if(results) {
+          context.commit('setRecentProducts', results)
+        } else {
+          toast.error('Please try again later')  , {  
+            autoClose: 2000
+          }  
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })
         
       }
     }
