@@ -19,7 +19,7 @@
             <input class="form-control" type="search" placeholder="Search by product name" id="searchInput">
         </form>
         <div class="buttons">
-          <button class="product-button">Sort Price</button>
+          <button class="product-button" @click="sortByPrice">Sort Price</button>
           <button class="product-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
 
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -44,7 +44,8 @@
                 </template>
         
                 <template #cardBody>
-                  <div class="card-title">{{ product.prodName }}</div>
+                  <div class="card-text">{{ product.prodName }}</div>
+                  <p class="card-title">{{ product.category }}</p>
                   <p class="card-text">{{ product.amount }}</p>
                   <router-link to="/productdetails"><button class="card-button">View</button></router-link>
                 </template>
@@ -74,6 +75,14 @@ export default {
             Spinner
         },
 
+        methods: {
+          sortByPrice(){
+            this.$store.state.recentProducts.sort((a, b)=>{
+              return a.amount.localeCompare(b.amount)
+            })
+          }
+        },
+  
         computed: {
           recentProducts() {
         return this.$store.state.recentProducts

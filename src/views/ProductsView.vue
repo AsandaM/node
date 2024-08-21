@@ -19,7 +19,7 @@
           <input class="form-control" type="search" placeholder="Search by product name" id="searchInput">
       </form>
       <div class="buttons">
-        <button class="product-button">Sort Price</button>
+        <button class="product-button" @click="sortByPrice">Sort Price</button>
         <button class="product-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
 
         <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
@@ -35,6 +35,8 @@
         </div>
       </div>
       </div>
+
+      
       <div class="cardsDiv pt-3 pb-3"  v-if="fetchProducts">
             
             <Card v-for="product in fetchProducts" :key="product.prodID">
@@ -44,7 +46,8 @@
               </template>
       
               <template #cardBody>
-                <div class="card-title">{{ product.prodName }}</div>
+                <div class="card-text ">{{ product.prodName }}</div>
+                <p class="card-title">{{ product.category }}</p>
                 <p class="card-text">{{ product.amount }}</p>
                 <router-link to="/productdetails"><button class="card-button">View</button></router-link>
               </template>
@@ -67,6 +70,7 @@
 import Spinner from '@/components/Spinner.vue'
 import Card from '@/components/Card.vue'
 
+
 export default {
 name: 'allProducts',
 components: {
@@ -74,13 +78,34 @@ components: {
           Spinner
       },
 
+      data() {
+        return{
+          isToggle: false,
+          sortButtonText: 'PRICE: LOW TO HIGH'
+        }
+      },
+
+      methods: {
+          sortByPrice(){
+            if (!this.isToggle) {
+        this.$store.state.products.sort((a, b) => b.Amount - a.Amount);
+        this.sortButtonText = 'PRICE: HIGH TO LOW';
+      } 
+      else {
+        this.$store.state.products.sort((a, b) => a.Amount - b.Amount);
+        this.sortButtonText = 'PRICE: LOW TO HIGH';
+      }
+      this.isToggle = !this.isToggle;
+          }   
+        },
+
       computed: {
-        products() {
+        fetchProducts() {
       return this.$store.state.products
     }
   },
   mounted() {
-    this.$store.dispatch('products')
+    this.$store.dispatch('fetchProducts')
   }
 }
 </script>

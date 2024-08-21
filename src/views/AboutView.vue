@@ -40,6 +40,20 @@
           </div>
         </div>
 
+        <div class="content-alignment">
+          <div class="imgDiv">
+            <img src="https://leahbasson.github.io/MyImages/skincareWebsite/recycle2.jpeg" alt="ourStoryImage" class="img-fluid">
+          </div>
+          <div class="mainText-Right">
+            <h3>Reuse | Reduce | Recycle</h3>
+            <p class="text-left">At Skin Oasis, our journey is guided by a philosophy that marries the pursuit of potent beauty with an unwavering commitment to a healthier planet. </p>
+            <p class="text-left fw-bold">Our Green Path:</p>
+            <p class="text-left"><span class="fw-bold">Maximized Potency, Minimized Waste: </span> We prioritize powerful products with minimal waste, staying true to our clean beauty roots.</p>
+            <p class="text-left"><span class="fw-bold">Waterless Innovation:  </span>Our waterless skincare technology delivers 100% active ingredients for potent, eco-friendly results.</p>
+            <p class="text-left"><span class="fw-bold">For You, For Earth:  </span>We care for both your skin and the planet, making conscious choices that lower energy use, transportation, and carbon footprint.</p>
+          </div>
+        </div>
+
       </div>
     </div>
 </template>
