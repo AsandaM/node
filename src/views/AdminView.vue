@@ -12,65 +12,15 @@
 
     <div class="container-fluid" id="admin-content">
       <div class="row">
+        <h1 class="heading">Products Table</h1>
         <div class="adminButtons">
-          <button class="admin-button">Sorting Alphabetically</button>
+          <button class="admin-button" @click="sortByNameAsc">Sorting Alphabetically</button>
       
         <button type="button" class="admin-button" data-bs-toggle="modal" data-bs-target="#addProductModal">
           Add New Product
         </button>
         </div>
-        
-      </div>
-    </div>
-
-    <div class="container-fluid">
-      <div class="row">
-        <!-- Modal -->
-        <div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addProductModalLabel">Add New Product</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body">
-                <form id="addProductForm" name="addProductForm">
-                        <div class="mb-3">
-                          <label for="productName" class="form-label">Product Name</label>
-                          <input type="text" class="form-control" id="productName" placeholder="Enter a product name">
-                        </div>
-                        <div class="mb-3">
-                          <label for="Quantity" class="form-label">Quantity</label>
-                          <input type="text" class="form-control" id="quantity" placeholder="Enter product quantity">
-                        </div>
-                        <div class="mb-3">
-                          <label for="productAmount" class="form-label">Product Amount</label>
-                          <input type="text" class="form-control" id="productAmount" placeholder="Enter your product amount">
-                        </div>
-                        <div class="mb-3">
-                          <label for="productCategory" class="form-label">Product Category</label>
-                          <input type="number" class="form-control" id="productCategory" placeholder="Enter the product category">
-                        </div>
-                        <div class="mb-3">
-                          <label for="productImage" class="form-label">Product ProdUrl</label>
-                          <input type="text" class="form-control" id="productImage" placeholder="Enter the product image url">
-                        </div>
-                        <div class="mb-3">
-                          <label for="productDesc" class="form-label">Product Description</label>
-                          <input type="text" class="form-control" id="productDesc" placeholder="Enter the product description">
-                        </div> 
-                      </form>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="close-button" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="save-button">Save changes</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="spinnerDiv"></div>
-
+        <Modal />
         <div class="tableContainer">
               <table>
                 <thead>
@@ -80,20 +30,131 @@
                  <th>Amount</th>
                  <th>Action</th>
                 </thead>
-                <tbody data>
-     
+                <tbody v-if="fetchProducts">
+                  <tr v-for="product in fetchProducts" :key="product.prodID">
+                    <td>
+                      {{ product.prodName }}
+                    </td>
+                    <td>
+                      {{ product.category }}
+                    </td>
+                    <td>
+                      <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid adminImages">
+                    </td>
+                    <td>
+                      {{ product.amount }}
+                    </td>
+                    <td>
+                      <div class="adminButtons">
+                        <button class="table-button" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi bi-pen-fill"></i></button>
+                        <button class="table-button" @click="deleteProduct(product.prodID)"><i class="bi bi-trash-fill"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                   
                 </tbody>
              </table>
             </div>
 
+            <div v-for="product in fetchProducts" :key="product.prodID">
+              <EditModal :product='product'>
+                <!-- <template #input>
+                  <input type="text" class="form-control" id="productName" :value="product.prodName">
+            
+                </template> -->
+              </EditModal>
 
+            </div>
+
+          
       </div>
     </div>
 
-    
+    <!-- <div class="container-fluid" id="admin-content">
+      <div class="row">
+        <h1 class="heading">Users Table</h1>
+        <div class="adminButtons">
+          <button class="admin-button" @click="sortByNameAsc">Sorting Alphabetically</button>
+      
+        <button type="button" class="admin-button" data-bs-toggle="modal" data-bs-target="#addProductModal">
+          Add New Product
+        </button>
+        </div>
+        <Modal />
+        <div class="tableContainer">
+              <table>
+                <thead>
+                 <th>Product Name</th>
+                 <th>Category</th>
+                 <th>Image</th>
+                 <th>Amount</th>
+                 <th>Action</th>
+                </thead>
+                <tbody v-if="fetchProducts">
+                  <tr v-for="product in fetchProducts" :key="product.prodID">
+                    <td>
+                      {{ product.prodName }}
+                    </td>
+                    <td>
+                      {{ product.category }}
+                    </td>
+                    <td>
+                      <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid adminImages">
+                    </td>
+                    <td>
+                      {{ product.amount }}
+                    </td>
+                    <td>
+                      <div class="adminButtons">
+                        <button class="table-button" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi bi-pen-fill"></i></button>
+                        <button class="table-button" @click="deleteProduct(product.prodID)"><i class="bi bi-trash-fill"></i></button>
+                      </div>
+                    </td>
+                  </tr>
+                   
+                </tbody>
+             </table>
+            </div>
+            
+      </div>
+    </div> -->
 
   </template>
 
+<script>
+import Modal from '@/components/ModalComp.vue'
+import EditModal from '@/components/EditModal.vue';
+
+export default {
+name: 'AdminView',
+components: {
+        Modal,
+        EditModal
+      },
+
+      methods: {
+          sortByNameAsc(){
+            this.$store.state.products.sort((a, b)=>{
+              return a.prodName.localeCompare(b.prodName)
+            })
+          },
+          deleteProduct(id){
+          this.$store.dispatch('deleteProduct', id)
+          },
+          
+        },
+
+      computed: {
+        fetchProducts() {
+      return this.$store.state.products
+    } 
+  },
+
+  mounted() {
+    this.$store.dispatch('fetchProducts')
+  }
+}
+</script>
 
 <style scoped>
 #admin{
@@ -157,44 +218,6 @@
   margin-right: 0.5rem;
 }
 
-.close-button{
-  background-color: var(--alternative);
-  border: 1px solid var(--primary);
-  border-radius: 0.5rem;
-  width: 10rem;
-  padding: 0.5rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.close-button:hover, .save-button:hover, .admin-button:hover{
-  transition: 2s;
-  background-color: var(--awesome);
-}
-
-.save-button{
-  background-color: var(--alternative);
-  border: 1px solid var(--primary);
-  border-radius: 0.5rem;
-  width: 10rem;
-  padding: 0.5rem;
-  font-family: "Poppins", sans-serif;
-  font-weight: bold;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
-}
-
-.form-label{
-  display: flex;
-}
-
-.modal-footer{
-  display: flex;
-  justify-content: space-between;
-}
-
 /* Table Styling*/
 th, td{
     border: 1px solid black;
@@ -235,17 +258,23 @@ table{
     display: none;
 }
 
-.btnModal{
-    padding: 0.5rem 2.1rem;
-    background-color: var(--alternative);
-    color: var(--secondary);
-    border: 1px solid var(--secondary);
-    border-radius: 0.5rem;
-    width: 14vw;
-    margin: auto;
+.heading{
+  font-family: "Poppins", sans-serif;
+  color: var(--primary);
+  padding-top: 2rem;
 }
 
+.adminButtons{
+ margin: auto;
+}
 
+.table-button{
+  background-color: var(--alternative);
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-right: 1.5rem;
+  font-size: 1rem;
+} 
 
 
 
@@ -288,7 +317,11 @@ th, td{
     margin: 0;
 }
 
-.tableContainer table, thead, tbody, th, td, tr {
+thead{
+  display: none;
+}
+
+.tableContainer table, tbody, th, td, tr {
     display: block;
 }
 
@@ -322,15 +355,10 @@ th, td{
 .tableContainer td:nth-of-type(1):before { content: "Product Name"; }
 .tableContainer td:nth-of-type(2):before { content: "Category"; }
 .tableContainer td:nth-of-type(3):before { content: "Image"; }
-.tableContainer td:nth-of-type(4):before { content: "Material"; }
-.tableContainer td:nth-of-type(5):before { content: "Amount"; }
-.tableContainer td:nth-of-type(6):before { content: "Action"; }
+.tableContainer td:nth-of-type(4):before { content: "Amount"; }
+.tableContainer td:nth-of-type(5):before { content: "Action"; }
 .tableContainer .total-row td:before { content: ""; }
 .tableContainer .total-row td:before { content: ""; }
 
-.btnModal{
-    width: 75vw;
-    margin: auto;
-}
 }
 </style>
