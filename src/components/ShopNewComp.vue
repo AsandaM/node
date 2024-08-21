@@ -53,6 +53,14 @@ import Card from './Card.vue'
 </script>
 
 <style>
+.heading{
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      color: var(--primary);
+    }
+    
     .home-shopNew{
       width: 100%;
     }
@@ -117,6 +125,10 @@ import Card from './Card.vue'
     .btn-shopNew{
       width: 16rem;
     }
+
+    .heading{
+            font-size: 1.6rem;
+        }
   }
 
 </style>
