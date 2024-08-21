@@ -134,8 +134,6 @@ export default createStore({
         const results = (await axios.post(`${apiURL}/products`,info) ).data
         console.log(results);
         
-        // const results = await res.data
-        
         if(results) {
           context.commit('setProducts', results)
         } else {
@@ -154,8 +152,6 @@ export default createStore({
       try {
         const results = (await axios.patch(`${apiURL}/products/${id}`) ).data
         console.log(results);
-        
-        // const results = await res.data
         
         if(results) {
           context.commit('setProducts', results)
@@ -176,8 +172,6 @@ export default createStore({
       try {
         const results = (await axios.delete(`${apiURL}/products/${id}`) ).data
         console.log(results);
-        
-        // const results = await res.data
         
         if(results) {
           context.commit('setProducts', results)
@@ -212,6 +206,25 @@ export default createStore({
         toast.error(`${e.message}`, {
           autoClose: 2000
         })  
+      }
+    },
+    async addUsers(context,info) {
+      try {
+        const results = (await axios.post(`${apiURL}/users`,info) ).data
+        console.log(results);
+        
+        if(results) {
+          context.commit('setUsers', results)
+        } else {
+          toast.error('Please try again later')  , {  
+            autoClose: 2000
+          }  
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })
+        
       }
     }
   

@@ -18,7 +18,7 @@
           <div class="imgDiv">
             <img src="https://leahbasson.github.io/MyImages/skincareWebsite/meerkats2.png" alt="ourStoryImage" class="img-fluid">
           </div>
-          <div class="mainText-Right">
+          <div class="mainText">
             <h3>PETA  Approved</h3>
             <p class="text-left">At Skin Oasis, it's a given that compassion is at the heart of everything we do. We want you to know that when you choose our products, you're making a choice that aligns with ethical values and respect for all living beings.</p>
             <p class="text-left fw-bold">Our Promise to Animals:</p>
@@ -28,14 +28,14 @@
         </div>
 
         <div class="content-alignment">
-          <div class="mainText-Right">
+          <div class="mainText planet-text">
             <h3>Protect Our Planet</h3>
             <p class="text-left">At Skin Oasis we believe that beauty shouldn’t come at the cost of our environment. That’s why we’re committed to sustainable practices every step of the way from sourcing eco-friendly ingredients to using recyclable packaging.</p>
             <p class="text-left fw-bold">Our Promise to the Forest:</p>
             <p class="text-left"><span class="fw-bold">Community Empowerment:  </span>Our dedication extends beyond conservation; it’s about people, too. By safeguarding the forest, we empower local communities, particularly those whose livelihoods depend on these natural resources. </p>
             <p class="text-left"><span class="fw-bold">Environment and Livelihood: </span>We support sustainable forestry practices, to enrich the environment for who call the forest home. </p>
           </div>
-          <div class="imgDiv">
+          <div class="imgDiv planet-image">
             <img src="https://leahbasson.github.io/MyImages/skincareWebsite/forest2.png" alt="ourStoryImage" class="img-fluid">
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="imgDiv">
             <img src="https://leahbasson.github.io/MyImages/skincareWebsite/recycle2.jpeg" alt="ourStoryImage" class="img-fluid">
           </div>
-          <div class="mainText-Right">
+          <div class="mainText">
             <h3>Reuse | Reduce | Recycle</h3>
             <p class="text-left">At Skin Oasis, our journey is guided by a philosophy that marries the pursuit of potent beauty with an unwavering commitment to a healthier planet. </p>
             <p class="text-left fw-bold">Our Green Path:</p>
@@ -62,6 +62,14 @@
 #ourStory{
   position: relative;
   z-index: 1;
+}
+
+.planet-image{
+  order: 2;
+}
+
+.planet-text{
+  order: 1;
 }
 
 .banner-image{
@@ -114,7 +122,7 @@ img[alt="ourStoryImage"]{
   color: var(--primary);
 }
 
-.mainText-Right{
+.mainText{
   width: 28rem;
   font-family: "Poppins",sans-serif;
 }
@@ -133,5 +141,39 @@ img[alt="ourStoryImage"]{
     width: 18rem;
     margin: 6rem auto 6rem;
   }
+  .content-alignment{
+  width: 65%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: auto;
+  padding-top: 4rem;
+  padding-bottom: 0rem;
+  color: var(--primary);
+}
+
+img[alt="ourStoryImage"]{
+  margin: auto;
+  padding-bottom: 3rem;
+}
+
+.mainText{
+  width: 100%;
+  font-family: "Poppins",sans-serif;
+ 
+}
+
+.text-left{
+  text-align: center;
+}
+
+.planet-image{
+  order: 1;
+}
+
+.planet-text{
+  order: 2;
+}
+
 }
 </style>

@@ -10,8 +10,8 @@
 
                 <div class="form-group">
                     <!-- Email address input-->
-                    <input class="form-control" id="email" type="email" name="Email" placeholder="Enter your email address*" v-model="email"/>
-                    <label id="email_error" class="contact-label"></label>
+                    <input class="form-control" id="email-footer" type="email" name="Email" placeholder="Enter your email address*" v-model="footerEmail"/>
+                    <label id="email_error_footer" class="contact-label"></label>
                 </div>
 
                 <div class="text-center"><button class="button1" id="submitButton" type="submit">Send</button></div>
@@ -50,20 +50,20 @@
       data(){
           return{
             cYear: new Date().getUTCFullYear(),
-            email:''
+            footerEmail:''
           }
       },
 
     methods: {
      validateForm(e){
-      let email = document.querySelector('#email').value;
-      if(email === ""){
-        document.getElementById("email_error").innerHTML = "Please enter your email address";
+      let footerEmail = document.querySelector('#email-footer').value;
+      if(footerEmail === ""){
+        document.getElementById("email_error_footer").innerHTML = "Please enter your email address";
         return false; // Prevent form submission
       }
       else{
      // Clear the error message
-        document.getElementById("email_error").innerHTML = "";
+        document.getElementById("email_error_footer").innerHTML = "";
         e.target.submit()
       }
     }
@@ -142,7 +142,8 @@
   }
 
   .footerLeftContent .contact-label{
-    margin-left: -2.6rem;
+    margin-top: 0.5rem;
+    margin-left: -3rem;
   }
 
   .footer-links{
@@ -217,7 +218,11 @@
 
   .footerLeftContent .contact-label{
     font-size: 0.7rem;
-    margin-left: -0.8rem;
+   display: flex;
+   justify-content: center;
+   align-items: start;
+   text-align: left;
+   margin-top: 0.5rem;
   }
 
   .footer-links{

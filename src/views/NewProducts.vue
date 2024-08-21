@@ -216,6 +216,14 @@ export default {
         background-color: var(--awesome);
     }
 
+    .heading{
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
 @media (width < 999px)
 {
   img[alt="banner-img"]{
@@ -249,6 +257,11 @@ export default {
   justify-content: center;
   flex-direction: column; 
   gap: 1rem;
+}
+
+.heading{
+    font-size: 1.8rem;
+    padding-bottom: 0rem;
 }
 
 }

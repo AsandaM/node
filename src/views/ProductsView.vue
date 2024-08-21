@@ -232,8 +232,21 @@ cursor: pointer;
       background-color: var(--awesome);
   }
 
+  .heading{
+      padding-top: 3rem;
+      padding-bottom: 2rem;
+      font-family: "Montserrat", sans-serif;
+      font-weight: bold;
+      color: var(--primary);
+    }
+
 @media (width < 999px)
 {
+.heading{
+  font-size: 1.8rem;
+  padding-bottom: 0rem;
+}
+
 img[alt="banner-img"]{
   width: 80%;
 }

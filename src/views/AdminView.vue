@@ -28,7 +28,7 @@
                  <th>Category</th>
                  <th>Image</th>
                  <th>Amount</th>
-                 <th>Action</th>
+                 <th>Actions</th>
                 </thead>
                 <tbody v-if="fetchProducts">
                   <tr v-for="product in fetchProducts" :key="product.prodID">
@@ -57,12 +57,13 @@
             </div>
 
             <div v-for="product in fetchProducts" :key="product.prodID">
-              <EditModal :product='product'>
-                <!-- <template #input>
+            <!-- <template #input>
                   <input type="text" class="form-control" id="productName" :value="product.prodName">
             
                 </template> -->
-              </EditModal>
+              <!-- <EditModal :product='product'>
+                
+              </EditModal> -->
 
             </div>
 
@@ -70,39 +71,45 @@
       </div>
     </div>
 
-    <!-- <div class="container-fluid" id="admin-content">
+    <!------------------------------- Users Table -------------------------------------------------->
+<div class="container-fluid" id="admin-content">
+    
       <div class="row">
         <h1 class="heading">Users Table</h1>
         <div class="adminButtons">
-          <button class="admin-button" @click="sortByNameAsc">Sorting Alphabetically</button>
+          <button class="admin-button" @click="sortUserNameAsc">Sorting Alphabetically</button>
       
-        <button type="button" class="admin-button" data-bs-toggle="modal" data-bs-target="#addProductModal">
-          Add New Product
+        <button type="button" class="admin-button" data-bs-toggle="modal" data-bs-target="#addUserModal">
+          Add New User
         </button>
         </div>
         <Modal />
-        <div class="tableContainer">
+        <div class="tableContainer2">
               <table>
                 <thead>
-                 <th>Product Name</th>
-                 <th>Category</th>
-                 <th>Image</th>
-                 <th>Amount</th>
-                 <th>Action</th>
+                 <th>Firstname</th>
+                 <th>Lastname</th>
+                 <th>Gender</th>
+                 <th>User Profile</th>
+                 <th>Email Address</th>
+                 <th>Actions</th>
                 </thead>
-                <tbody v-if="fetchProducts">
-                  <tr v-for="product in fetchProducts" :key="product.prodID">
+                <tbody v-if="fetchUsers">
+                  <tr v-for="user in fetchUsers" :key="user.userID">
                     <td>
-                      {{ product.prodName }}
+                      {{ user.firstName }}
                     </td>
                     <td>
-                      {{ product.category }}
+                      {{ user.lastName }}
                     </td>
                     <td>
-                      <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid adminImages">
+                      {{ user.gender }}
                     </td>
                     <td>
-                      {{ product.amount }}
+                      <img :src="user.userProfile" :alt="user.firstName" loading="eager" class="img-fluid adminImages">
+                    </td>
+                    <td class="mobile-email text-wrap">
+                      {{ user.emailAdd }}
                     </td>
                     <td>
                       <div class="adminButtons">
@@ -115,27 +122,36 @@
                 </tbody>
              </table>
             </div>
-            
+            <AddUserModal />
       </div>
-    </div> -->
+    </div>
 
   </template>
 
 <script>
-import Modal from '@/components/ModalComp.vue'
-import EditModal from '@/components/EditModal.vue';
+import Modal from '@/components/ModalComp.vue';
+import AddUserModal from '@/components/AddUserModal.vue';
+// import EditModal from '@/components/EditModal.vue';
 
 export default {
 name: 'AdminView',
 components: {
         Modal,
-        EditModal
+        AddUserModal
+        //EditModal
       },
 
       methods: {
+        //products sorting
           sortByNameAsc(){
             this.$store.state.products.sort((a, b)=>{
               return a.prodName.localeCompare(b.prodName)
+            })
+          },
+          //users sorting
+          sortUserNameAsc(){
+            this.$store.state.users.sort((a, b)=>{
+              return a.firstName.localeCompare(b.firstName)
             })
           },
           deleteProduct(id){
@@ -147,11 +163,15 @@ components: {
       computed: {
         fetchProducts() {
       return this.$store.state.products
-    } 
+    } ,
+    fetchUsers(){
+      return this.$store.state.users
+    }
   },
 
   mounted() {
-    this.$store.dispatch('fetchProducts')
+    this.$store.dispatch('fetchProducts'),
+    this.$store.dispatch('fetchUsers')
   }
 }
 </script>
@@ -261,7 +281,7 @@ table{
 .heading{
   font-family: "Poppins", sans-serif;
   color: var(--primary);
-  padding-top: 2rem;
+  padding-top: 4rem;
 }
 
 .adminButtons{
@@ -276,10 +296,14 @@ table{
   font-size: 1rem;
 } 
 
-
-
 @media (width < 999px)
 {
+  .heading{
+    padding-top: 3rem;
+ font-size: 1.8rem;
+ padding-bottom: 3rem;
+}
+
   img[alt="banner-img"]{
     width: 80%;
   }
@@ -321,28 +345,28 @@ thead{
   display: none;
 }
 
-.tableContainer table, tbody, th, td, tr {
+table, tbody, th, td, tr {
     display: block;
 }
 
-.tableContainer table {
-    margin-bottom: 5rem;
+table {
+    margin-bottom: 1.5rem;
 }
 
-.tableContainer thead tr {
+thead tr {
     display: none;
 }
 
-.tableContainer tr {
+tr {
     margin-bottom: 15px;
 }
 
-.tableContainer td {
+td {
     position: relative;
     padding-left: 50%;
 }
 
-.tableContainer td:before {
+td:before {
     position: absolute;
     top: 50%;
     left: 10px;
@@ -352,13 +376,28 @@ thead{
     transform: translateY(-50%);
 }
 
+.mobile-email{
+  word-wrap: break-word;
+}
+
+/* Products Table Mobile*/
 .tableContainer td:nth-of-type(1):before { content: "Product Name"; }
 .tableContainer td:nth-of-type(2):before { content: "Category"; }
 .tableContainer td:nth-of-type(3):before { content: "Image"; }
 .tableContainer td:nth-of-type(4):before { content: "Amount"; }
-.tableContainer td:nth-of-type(5):before { content: "Action"; }
+.tableContainer td:nth-of-type(5):before { content: "Actions"; }
 .tableContainer .total-row td:before { content: ""; }
 .tableContainer .total-row td:before { content: ""; }
+
+/* Users Table Mobile */
+.tableContainer2 td:nth-of-type(1):before { content: "Firstname"; }
+.tableContainer2 td:nth-of-type(2):before { content: "Lastname"; }
+.tableContainer2 td:nth-of-type(3):before { content: "Gender"; }
+.tableContainer2 td:nth-of-type(4):before { content: "User Profile"; }
+.tableContainer2 td:nth-of-type(5):before { content: "Email Address"; }
+.tableContainer2 td:nth-of-type(6):before { content: "Actions"; }
+.tableContainer2 .total-row td:before { content: ""; }
+.tableContainer2 .total-row td:before { content: ""; }
 
 }
 </style>
