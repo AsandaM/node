@@ -12,7 +12,7 @@
   </div>
 
   <div class="container-fluid" id="newDisplay">
-    <div class="product-display">
+    <div class="product-display" id="product-section">
       <h1 class="heading">All Products</h1>
       <div class="product-interaction">
         <form class="d-flex mt-3" role="search">
@@ -136,7 +136,25 @@ components: {
   mounted() {
     this.$store.dispatch('fetchProducts').then(() => {
       this.loading = false; 
+
+       // Check if there's a category in the query params and filter by it
+      //  const category = this.$route.query.category;
+      // if (category) {
+      //   this.selectedCategory = category;
+      // }
+
+      // Check if there's a category in the route params and filter by it
+      const category = this.$route.params.category;
+      if (category) {
+        this.selectedCategory = category;
+      }
     });
+  },
+  watch: {
+    // React to changes in the route params
+    '$route.params.category'(newCategory) {
+      this.selectedCategory = newCategory || 'All';
+    }
   }
 }
 </script>

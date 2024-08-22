@@ -245,11 +245,16 @@ export default createStore({
           }  
         }
       } catch (e) {
+        if(e.response && e.response.data && e.response.data.message) {
+          toast.error(`${e.response.data.message}`, {
+            autoClose: 5000
+          })
+        } else {
         toast.error(`${e.message}`, {
           autoClose: 2000
         })
         
-      }
+      }}
     },
     async editUsers(context,id) {
       try {

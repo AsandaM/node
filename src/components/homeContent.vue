@@ -7,7 +7,7 @@
     <div class="categoryCircles pt-3">
       <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Toner</p></router-link>
+      <router-link :to="{ path: '/products/Toner', hash: '#product-section' }"><p>Toner</p></router-link>
 
     </div>
     
@@ -16,7 +16,7 @@
 
     <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Mask</p></router-link>
+      <router-link :to="{ path: '/products/Mask' }"><p>Mask</p></router-link>
     </div>
     
     <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/oskin.png" alt="cardImage" loading="eager">
@@ -24,7 +24,7 @@
 
     <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Moisturiser</p></router-link>
+      <router-link :to="{ path: '/products/Moisturiser' }"><p>Moisturiser</p></router-link>
     </div>
     
     <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/combinationSkin2.png" alt="cardImage" loading="eager">
