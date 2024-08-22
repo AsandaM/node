@@ -14,8 +14,9 @@
                         {{ product.prodDescription }}
                     </p>
                     <p class="lead"><span class="fw-bold">Amount</span>: R{{ product.amount }}</p>
-                </template>
+                </template> 
             </Card>
+            <router-link to="/products"><button class="button1">Continue Shopping</button></router-link>
         </div>
         <div v-else> 
             <Spinner/>
@@ -53,5 +54,23 @@ onMounted(() => {
     font-family: "Poppins", sans-serif;
     color: var(--primary);
 }
+
+.button1{
+  background-color: var(--alternative);
+  padding: 0.5rem;
+  width: 18rem;
+  border-radius: 0.5rem;
+  font-family:"Poppins", sans-serif;
+  font-weight: 600;
+  margin-top: 2rem;
+}
+
+@media (width < 999px)
+{
+    .button1{
+    width: 6rem;
+    }
+}
+
 
 </style>

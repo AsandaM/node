@@ -2,7 +2,7 @@
     <div class="container-fluid">
       <div class="row">
         <!-- Modal -->
-        <div class="modal fade" id="editProductModal" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
+        <div class="modal fade" :id="'editProductModal'+product.prodID" tabindex="-1" aria-labelledby="editProductModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -13,33 +13,27 @@
                 <form id="editProductForm" name="editProductForm">
                         <div class="mb-3">
                           <label for="productName" class="form-label">Product Name</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.prodName">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="prodName">
                         </div>
                         <div class="mb-3">
                           <label for="Quantity" class="form-label">Quantity</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.quantity">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="quantity">
                         </div>
                         <div class="mb-3">
                           <label for="productAmount" class="form-label">Product Amount</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.amount">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="amount">
                         </div>
                         <div class="mb-3">
                           <label for="productCategory" class="form-label">Product Category</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.category">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="category">
                         </div>
                         <div class="mb-3">
                           <label for="productImage" class="form-label">Product ProdUrl</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.prodURL">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="prodURL">
                         </div>
                         <div class="mb-3">
                           <label for="productDesc" class="form-label">Product Description</label>
-                          <input type="text" class="form-control" id="productName" :placeholder="product.prodDescription">
-                          <!-- <slot name="input"></slot> -->
+                          <input type="text" class="form-control" id="productName" v-model="prodDescription">
                         </div> 
                 </form>
               </div>
@@ -62,22 +56,24 @@ props:['product'],
 
 data() {
   return {
-    prodName : null,
-    quantity : null,
-    amount : null,
-    category : null,
-    prodURL : null,
-    prodDescription : null
-  }
+    
+      prodName : this.product.prodName,
+      quantity : this.product.quantity,
+      amount : this.product.amount,
+      category : this.product.category,
+      prodURL : this.product.prodURL,
+      prodDescription : this.product.prodDescription
+    }
+  
 },
 
 methods: {
     editProducts(id) {
-          this.$store.dispatch('editProducts', id)
+      console.log('hehe'+id);
+
+          this.$store.dispatch('editProducts',{id:id, info:this.$data})
         },
-  fetchProduct(id) {
-      this.$store.state.dispatch('fetchProduct', id)
-    }
+  
 },
 
 computed: {
@@ -86,9 +82,9 @@ computed: {
     } 
   },
 
-  mounted() {
-    this.$store.dispatch('fetchProduct')
-  }
+  // mounted() {
+  //   this.$store.dispatch('fetchProduct')
+  // }
 
 }
 </script>

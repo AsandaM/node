@@ -46,7 +46,7 @@
                     </td>
                     <td>
                       <div class="adminButtons">
-                        <button class="table-button" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi bi-pen-fill"></i></button>
+                        <button class="table-button" @click="fetchProduct(product.prodID)" data-bs-toggle="modal" :data-bs-target="'#editProductModal'+product.prodID"><i class="bi bi-pen-fill"></i></button>
                         <button class="table-button" @click="deleteProduct(product.prodID)"><i class="bi bi-trash-fill"></i></button>
                       </div>
                     </td>
@@ -60,13 +60,13 @@
             </div>
 
             <div v-for="product in fetchProducts" :key="product.prodID">
-            <!-- <template #input>
+           <!-- <template #input>
                   <input type="text" class="form-control" id="productName" :value="product.prodName">
             
-                </template> -->
-              <!-- <EditModal :product='product'>
+                </template>  -->
+              <EditModal :product='product'>
                 
-              </EditModal> -->
+              </EditModal> 
 
             </div>
 
@@ -116,8 +116,8 @@
                     </td>
                     <td>
                       <div class="adminButtons">
-                        <button class="table-button" data-bs-toggle="modal" data-bs-target="#editProductModal"><i class="bi bi-pen-fill"></i></button>
-                        <button class="table-button" @click="deleteProduct(product.prodID)"><i class="bi bi-trash-fill"></i></button>
+                        <button class="table-button" data-bs-toggle="modal" :data-bs-target="'#editUserModal'+user.userID" @click="fetchUser(user.userID)"><i class="bi bi-pen-fill"></i></button>
+                        <button class="table-button" @click="deleteUser(user.userID)"><i class="bi bi-trash-fill"></i></button>
                       </div>
                     </td>
                   </tr>
@@ -129,6 +129,14 @@
              </table>
             </div>
             <AddUserModal />
+
+            <div v-for="user in fetchUsers" :key="user.userID">
+              <EditUserModal :user='user'>
+                
+              </EditUserModal> 
+
+            </div>
+
       </div>
     </div>
 
@@ -138,15 +146,17 @@
 import Modal from '@/components/ModalComp.vue';
 import AddUserModal from '@/components/AddUserModal.vue';
 import Spinner from '@/components/Spinner.vue'
-// import EditModal from '@/components/EditModal.vue';
+import EditModal from '@/components/EditModal.vue';
+import EditUserModal from '@/components/EditUserModal.vue';
 
 export default {
 name: 'AdminView',
 components: {
         Modal,
         AddUserModal,
-        Spinner
-        //EditModal
+        Spinner,
+        EditModal,
+        EditUserModal
       },
 
       methods: {
@@ -165,7 +175,15 @@ components: {
           deleteProduct(id){
           this.$store.dispatch('deleteProduct', id)
           },
-          
+          deleteUser(id){
+          this.$store.dispatch('deleteUser', id)
+          },
+          fetchProduct(id) {
+          this.$store.dispatch('fetchProduct', id)
+        },
+        fetchUser(id) {
+         this.$store.dispatch('fetchUser', id)
+        }
         },
 
       computed: {

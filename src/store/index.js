@@ -148,9 +148,13 @@ export default createStore({
         
       }
     },
-    async editProducts(context,id) {
+    async editProducts(context,data) {
+      
       try {
-        const results = (await axios.patch(`${apiURL}/products/${id}`) ).data
+      let {id,info} =data
+      // console.log(id, info);
+
+        const results = (await axios.patch(`${apiURL}/products/${id}`, info) ).data
         console.log(results);
         
         if(results) {
@@ -230,7 +234,7 @@ export default createStore({
     },
     async addUsers(context,info) {
       try {
-        const results = (await axios.post(`${apiURL}/users`,info) ).data
+        const results = (await axios.post(`${apiURL}/users/signup`,info) ).data
         console.log(results);
         
         if(results) {
