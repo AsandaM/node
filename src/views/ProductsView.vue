@@ -13,7 +13,7 @@
 
   <div class="container-fluid" id="newDisplay">
     <div class="product-display">
-      <h1 class="heading">All Products</h1>
+      <h1 class="heading" id="filterByCategory">All Products</h1>
       <div class="product-interaction">
         <form class="d-flex mt-3" role="search">
           <input class="form-control" type="search" placeholder="Search by product name" id="searchInput">
@@ -28,9 +28,10 @@
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            <p>Toners</p>
-            <p>Masks</p>
-            <p>Moisturisers</p>
+          <p @click="filterByCategory('All')">All</p>
+          <p @click="filterByCategory('Toner')">Toner</p>
+          <p @click="filterByCategory('Mask')">Mask</p>
+          <p @click="filterByCategory('Moisturiser')">Moisturiser</p>
           </div>
         </div>
       </div>
@@ -81,7 +82,8 @@ components: {
       data() {
         return{
           isToggle: false,
-          sortButtonText: 'PRICE: LOW TO HIGH'
+          sortButtonText: 'PRICE: LOW TO HIGH',
+          selectedCategory: 'All'
         }
       },
 
@@ -96,14 +98,24 @@ components: {
         this.sortButtonText = 'PRICE: LOW TO HIGH';
       }
       this.isToggle = !this.isToggle;
-          }   
+          }  ,
+          filterByCategory(category) {
+      this.selectedCategory = category;
+    } 
         },
 
-      computed: {
-        fetchProducts() {
-      return this.$store.state.products
+        computed: {
+    fetchProducts() {
+      if (this.selectedCategory === 'All') {
+        return this.$store.state.products;
+      } else {
+        return this.$store.state.products.filter(
+          product => product.category === this.selectedCategory
+        );
+      }
     }
   },
+
   mounted() {
     this.$store.dispatch('fetchProducts')
   }

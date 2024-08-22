@@ -32,7 +32,6 @@
                     <h5>Useful links</h5>
                     <router-link to="/contact" class="no-underline"><p>Contact</p></router-link>
                     <router-link to="/about" class="no-underline"><p>Our Story</p></router-link>
-                    <router-link to="/blog" class="no-underline"><p>Skin Blog</p></router-link>
                 </div> 
             </div>
             </div>     

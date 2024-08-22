@@ -11,10 +11,10 @@
       </div>
     </div>
 
-    <div class="container-fluid" id="peta-approved">
+    <div class="container-fluid">
       <div class="row">
 
-        <div class="content-alignment">
+        <div class="content-alignment" id="petaApproved">
           <div class="imgDiv">
             <img src="https://leahbasson.github.io/MyImages/skincareWebsite/meerkats2.png" alt="ourStoryImage" class="img-fluid">
           </div>
@@ -27,7 +27,7 @@
           </div>
         </div>
 
-        <div class="content-alignment">
+        <div class="content-alignment" id="planet">
           <div class="mainText planet-text">
             <h3>Protect Our Planet</h3>
             <p class="text-left">At Skin Oasis we believe that beauty shouldn’t come at the cost of our environment. That’s why we’re committed to sustainable practices every step of the way from sourcing eco-friendly ingredients to using recyclable packaging.</p>
@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="content-alignment">
+        <div class="content-alignment" id="recycle">
           <div class="imgDiv">
             <img src="https://leahbasson.github.io/MyImages/skincareWebsite/recycle2.jpeg" alt="ourStoryImage" class="img-fluid">
           </div>

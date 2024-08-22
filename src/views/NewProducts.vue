@@ -24,13 +24,14 @@
 
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter by Category</h5>
+              <h5 class="offcanvas-title" id="offcanvasScrollingLabel" >Filter by Category</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
-              <p>Toners</p>
-              <p>Masks</p>
-              <p>Moisturisers</p>
+              <p @click="filterByCategory('All')">All</p>
+          <p @click="filterByCategory('Toner')">Toner</p>
+          <p @click="filterByCategory('Mask')">Mask</p>
+          <p @click="filterByCategory('Moisturiser')">Moisturiser</p>
             </div>
           </div>
         </div>
@@ -75,19 +76,35 @@ export default {
             Spinner
         },
 
+        data() {
+        return{
+          selectedCategory: 'All'
+        }
+      },
+
         methods: {
           sortByPrice(){
             this.$store.state.recentProducts.sort((a, b)=>{
               return a.amount.localeCompare(b.amount)
             })
-          }
+          },
+          filterByCategory(category) {
+      this.selectedCategory = category;
+    } 
         },
   
         computed: {
-          recentProducts() {
-        return this.$store.state.recentProducts
+    recentProducts() {
+      if (this.selectedCategory === 'All') {
+        return this.$store.state.recentProducts;
+      } else {
+        return this.$store.state.recentProducts.filter(
+          product => product.category === this.selectedCategory
+        );
       }
-    },
+    }
+  },
+
     mounted() {
       this.$store.dispatch('recentProducts')
     }

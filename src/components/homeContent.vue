@@ -7,7 +7,7 @@
     <div class="categoryCircles pt-3">
       <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Toner</p></router-link>
+      <router-link :to="{ name: 'products', hash: '#filterByCategory' }"><p>Toner</p></router-link>
     </div>
     
     <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/toner.png" alt="cardImage" loading="eager">
@@ -15,7 +15,7 @@
 
     <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Masks</p></router-link>
+      <router-link :to="{ name: 'products', hash: '#filterByCategory' }"><p>Masks</p></router-link>
     </div>
     
     <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/oskin.png" alt="cardImage" loading="eager">
@@ -23,7 +23,7 @@
 
     <div class="circle">
     <div class="circle-overlay">
-      <router-link to="/products"><p>Moisturiser</p></router-link>
+      <router-link :to="{ name: 'products', hash: '#filterByCategory' }"><p>Moisturiser</p></router-link>
     </div>
     
     <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/combinationSkin2.png" alt="cardImage" loading="eager">
@@ -42,7 +42,7 @@
       <div class="carousel-caption2">
         <h1 class="animate__animated animate__fadeInUp">Reveal Your Youthful Glow: Say Goodbye to Wrinkles</h1>
         <p class="animate__animated animate__fadeInUp">Fine lines and wrinkles don’t stand a chance with our advanced skincare solutions. Packed with powerful ingredients, our products are designed to rejuvenate and nourish your skin, leaving it smooth, firm, and radiant.</p>
-        <router-link to="/blog"><button class="hb-button animate__animated animate__fadeInUp">Discover</button></router-link>
+        <router-link to="/products"><button class="hb-button animate__animated animate__fadeInUp">Discover</button></router-link>
       </div>
     </div>
     <div class="carousel-item">
@@ -51,7 +51,7 @@
       <div class="carousel-caption2">
         <h1 class="animate__animated animate__fadeInUp">Gentle Care for Sensitive Skin</h1>
         <p class="animate__animated animate__fadeInUp">Discover our specially formulated products designed to soothe and protect delicate skin.Caring for sensitive skin requires the right balance of gentle yet effective ingredients. </p>
-        <router-link to="/blog"><button class="hb-button animate__animated animate__fadeInUp">Discover</button></router-link>
+        <router-link to="/products"><button class="hb-button animate__animated animate__fadeInUp">Discover</button></router-link>
       </div>
     </div>
   </div>
@@ -73,21 +73,21 @@
       <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/peta-approved.jpg" alt="Rabbit" loading="eager">
   <div class="card-img-overlay">
     <h5 class="card-title pb-3">PETA-Approved</h5>
-    <router-link to="/about"><button class="card-button">Read More</button></router-link>
+    <router-link :to="{ name: 'about', hash: '#petaApproved' }"><button class="card-button">Read More</button></router-link>
   </div>
 </div>
 <div class="card text-bg-dark">
       <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/planet.jpg" alt="Forest" loading="eager">
   <div class="card-img-overlay">
     <h5 class="card-title pb-3">Protect Our Planet</h5>
-    <router-link to="/about"><button class="card-button">Read More</button></router-link>
+    <router-link :to="{ name: 'about', hash: '#planet' }"><button class="card-button">Read More</button></router-link>
   </div>
 </div>
 <div class="card text-bg-dark">
       <img class="img-fluid" src="https://leahbasson.github.io/MyImages/skincareWebsite/recycle4.png" alt="Products" loading="eager">
   <div class="card-img-overlay">
     <h5 class="card-title pb-3">Reuse , Reduce , Recycle</h5>
-    <router-link to="/about"><button class="card-button">Read More</button></router-link>
+    <router-link :to="{ name: 'about', hash: '#recycle' }"><button class="card-button">Read More</button></router-link>
   </div>
 </div>
     </div>
@@ -170,6 +170,11 @@ export default {
       font-family: "Poppins", sans-serif;
       font-weight: bold;
       font-size: 1.5rem;
+      transition: all .3s;
+    }
+
+    .circle-overlay p:hover{
+      transform: scale(1.4);
     }
     
     .circle-overlay a{

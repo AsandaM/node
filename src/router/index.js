@@ -32,20 +32,28 @@ const routes = [
     component: () => import('@/views/NewProducts.vue')
   },
   {
-    path: '/blog',
-    name: 'blog',
-    component: () => import('@/views/BlogView.vue')
-  },
-  {
     path: '/productdetails',
     name: 'productdetails',
     component: () => import('@/views/ProductDetails.vue')
   }
 ]
 
+
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      };
+    } else if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  },
+});
 
 export default router

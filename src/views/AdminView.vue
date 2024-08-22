@@ -53,6 +53,9 @@
                   </tr>
                    
                 </tbody>
+                <div v-else>
+                  <Spinner />
+                </div>
              </table>
             </div>
 
@@ -120,6 +123,9 @@
                   </tr>
                    
                 </tbody>
+                <div v-else>
+                  <Spinner />
+                </div>
              </table>
             </div>
             <AddUserModal />
@@ -131,13 +137,15 @@
 <script>
 import Modal from '@/components/ModalComp.vue';
 import AddUserModal from '@/components/AddUserModal.vue';
+import Spinner from '@/components/Spinner.vue'
 // import EditModal from '@/components/EditModal.vue';
 
 export default {
 name: 'AdminView',
 components: {
         Modal,
-        AddUserModal
+        AddUserModal,
+        Spinner
         //EditModal
       },
 
