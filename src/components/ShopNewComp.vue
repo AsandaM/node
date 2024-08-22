@@ -11,10 +11,10 @@
                 </template>
         
                 <template #cardBody>
-                  <div class="card-text">{{ product.prodName }}</div>
-                  <p class="card-title">{{ product.category }}</p>
-                  <p class="card-text">{{ product.amount }}</p>
-                  <router-link to="/productdetails"><button class="card-button">View</button></router-link>
+                  <p class="card-title">{{ product.prodName }}</p>
+                  <p class="card-text">{{ product.category }}</p>
+                  <p class="card-title">R {{ product.amount }}</p>
+                  <router-link :to="{name: 'productdetails', params: {id: product.prodID}}"><button class="card-button">View</button></router-link>
                 </template>
               </Card>
             
