@@ -208,9 +208,68 @@ export default createStore({
         })  
       }
     },
+    async fetchUser(context, id) {
+      try {
+        const res = await axios.get(`${apiURL}/users/${id}`) 
+        console.log(res);
+        
+        const results = await res.data
+        
+        if(results) {
+          context.commit('setUser', results)
+        } else {
+          toast.error('Please try again later')  , { 
+            autoClose: 2000
+          }  
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })  
+      }
+    },
     async addUsers(context,info) {
       try {
         const results = (await axios.post(`${apiURL}/users`,info) ).data
+        console.log(results);
+        
+        if(results) {
+          context.commit('setUsers', results)
+        } else {
+          toast.error('Please try again later')  , {  
+            autoClose: 2000
+          }  
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })
+        
+      }
+    },
+    async editUsers(context,id) {
+      try {
+        const results = (await axios.patch(`${apiURL}/users/${id}`) ).data
+        console.log(results);
+        
+        if(results) {
+          context.commit('setUsers', results)
+        } else {
+          toast.error('Please try again later')  , {  
+            autoClose: 2000
+          }   
+        }
+      } catch (e) {
+        toast.error(`${e.message}`, {
+          autoClose: 2000
+        })
+        console.log(e);
+        
+      }
+    },
+    async deleteUser(context,id) {
+      try {
+        const results = (await axios.delete(`${apiURL}/users/${id}`) ).data
         console.log(results);
         
         if(results) {

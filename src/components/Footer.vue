@@ -22,7 +22,7 @@
             <div class="footerRightContent">
                 <div class="footer-socialLinks">
                     <h5>Social Links</h5>
-                    <div class="footer-links">
+                    <div class="footer-links padding">
                       <a class="lnk text-white" href="mailto:your-email@example.com" alt="outlook icon" target="_blank"><i class="bi bi-envelope"></i></a>
                       <a class="lnk text-white" href="https://www.linkedin.com/in/leah-basson-23a4192a0" alt="linkedin icon" target="_blank"><i class="bi bi-linkedin"></i></a>
                       <a class="lnk text-white" href="https://github.com/LeahBasson" target="_blank"><i class="bi bi-github"></i></a>
@@ -30,8 +30,11 @@
                 </div>
                 <div class="footer-usefulLinks">
                     <h5>Useful links</h5>
+                    <div class="padding">
                     <router-link to="/contact" class="no-underline"><p>Contact</p></router-link>
                     <router-link to="/about" class="no-underline"><p>Our Story</p></router-link>
+                    </div>
+                    
                 </div> 
             </div>
             </div>     
@@ -75,6 +78,10 @@
   .no-underline{
     text-decoration: none;
     color: var(--primary);
+  }
+
+  .padding{
+    padding-top: 1rem;
   }
 
   .Footer{

@@ -11,12 +11,13 @@
       </div>
     </div>
 
-    <div class="container-fluid" id="newDisplay">
-      <div class="product-display">
-        <h1 class="heading">New Products</h1>
-        <div class="product-interaction">
-          <form class="d-flex mt-3" role="search">
-            <input class="form-control" type="search" placeholder="Search by product name" id="searchInput">
+   
+  <div class="container-fluid" id="newDisplay">
+    <div class="product-display">
+      <h1 class="heading">New Products</h1>
+      <div class="product-interaction">
+        <form class="d-flex mt-3" role="search">
+          <input class="form-control" type="text" placeholder="Search by product name" id="searchInput" v-model="searchQuery">
         </form>
         <div class="buttons">
           <button class="product-button" @click="sortByPrice">Sort Price</button>
@@ -24,94 +25,113 @@
 
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel" >Filter by Category</h5>
+              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter by Category</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
               <p @click="filterByCategory('All')">All</p>
-          <p @click="filterByCategory('Toner')">Toner</p>
-          <p @click="filterByCategory('Mask')">Mask</p>
-          <p @click="filterByCategory('Moisturiser')">Moisturiser</p>
+              <p @click="filterByCategory('Toner')">Toner</p>
+              <p @click="filterByCategory('Mask')">Mask</p>
+              <p @click="filterByCategory('Moisturiser')">Moisturiser</p>
             </div>
           </div>
         </div>
-        </div>
-        <div class="cardsDiv pt-3 pb-3"  v-if="recentProducts">
-              
-              <Card v-for="product in recentProducts" :key="product.prodID">
-                
-                <template #cardHeader>
-                <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid">
-                </template>
-        
-                <template #cardBody>
-                  <div class="card-text">{{ product.prodName }}</div>
-                  <p class="card-title">{{ product.category }}</p>
-                  <p class="card-text">{{ product.amount }}</p>
-                  <router-link to="/productdetails"><button class="card-button">View</button></router-link>
-                </template>
-              </Card>
-            
-            </div>
-            <div v-else>
-              <Spinner/>
-            </div> 
       </div>
 
-      
+      <div v-if="loading">
+        <Spinner />
+      </div>
 
+      <div class="cardsDiv pt-3 pb-3" v-else>
+        <p class="not-found-message" v-if="isProductNotFound">Product not found</p>
+        <Card v-else v-for="product in filteredProducts" :key="product.prodID">
+          <template #cardHeader>
+            <img :src="product.prodURL" :alt="product.prodName" loading="eager" class="img-fluid">
+          </template>
+
+          <template #cardBody>
+            <div class="card-title">{{ product.prodName }}</div>
+            <p class="card-text">{{ product.category }}</p>
+            <p class="card-title">R {{ product.amount }}</p>
+            <router-link :to="{name: 'productdetails', params: {id: product.prodID}}"><button class="card-button">View</button></router-link>
+          </template>
+        </Card>
+      </div>
     </div>
-
+  </div>
 
 </template>
 
 <script>
-import Spinner from '@/components/Spinner.vue'
-import Card from '@/components/Card.vue'
+import Spinner from '@/components/Spinner.vue';
+import Card from '@/components/Card.vue';
 
 export default {
   name: 'NewProducts',
   components: {
-            Card,
-            Spinner
-        },
+    Card,
+    Spinner
+  },
 
-        data() {
-        return{
-          selectedCategory: 'All'
-        }
-      },
+  data() {
+    return {
+      selectedCategory: 'All',
+      searchQuery: '',  
+      loading: true 
+    };
+  },
 
-        methods: {
-          sortByPrice(){
-            this.$store.state.recentProducts.sort((a, b)=>{
-              return a.amount.localeCompare(b.amount)
-            })
-          },
-          filterByCategory(category) {
+  methods: {
+    sortByPrice() {
+      this.$store.state.recentProducts.sort((a, b) => {
+        return a.amount.localeCompare(b.amount);
+      });
+    },
+    filterByCategory(category) {
       this.selectedCategory = category;
-    } 
-        },
-  
-        computed: {
-    recentProducts() {
-      if (this.selectedCategory === 'All') {
-        return this.$store.state.recentProducts;
-      } else {
-        return this.$store.state.recentProducts.filter(
-          product => product.category === this.selectedCategory
-        );
-      }
     }
   },
 
-    mounted() {
-      this.$store.dispatch('recentProducts')
+  computed: {
+    filteredProducts() {
+      let products = this.$store.state.recentProducts;
+
+      if (this.selectedCategory !== 'All') {
+        products = products.filter(
+          product => product.category === this.selectedCategory
+        );
+      }
+
+      if (this.searchQuery) {
+        products = products.filter(
+          product => product.prodName.toLowerCase().includes(this.searchQuery.toLowerCase())
+        );
+      }
+
+      return products;
+    },
+
+    isProductNotFound() {
+      return this.filteredProducts.length === 0 && this.searchQuery !== '';
     }
-}
+  },
+
+  mounted() {
+    this.$store.dispatch('recentProducts').then(() => {
+      this.loading = false; 
+    });
+  }
+};
 </script>
 
+
 <style scoped>
+.not-found-message{
+  font-family: "Poppins", sans-serif;
+  color: var(--primary);
+  font-size: 1.3rem;
+}
+
 #newProducts{
   position: relative;
   z-index: 1;
