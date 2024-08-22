@@ -17,11 +17,11 @@
                         </div>
                         <div class="mb-3">
                           <label for="Quantity" class="form-label">Quantity</label>
-                          <input type="text" class="form-control" id="quantity" placeholder="Enter product quantity" v-model="quantity">
+                          <input type="number" class="form-control" id="quantity" placeholder="Enter product quantity" v-model="quantity">
                         </div>
                         <div class="mb-3">
                           <label for="productAmount" class="form-label">Product Amount</label>
-                          <input type="text" class="form-control" id="productAmount" placeholder="Enter your product amount" v-model="amount">
+                          <input type="number" class="form-control" id="productAmount" placeholder="Enter your product amount" v-model="amount">
                         </div>
                         <div class="mb-3">
                           <label for="productCategory" class="form-label">Product Category</label>
@@ -50,6 +50,9 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'
+import { Modal } from 'bootstrap'
+
 export default {
 name: 'ModalComp',
 
@@ -64,12 +67,28 @@ data() {
   }
 },
 
-methods: {
-  addProducts() {
-    this.$store.dispatch('addProducts', this.$data)
-  }
-}
+computed: {
+    isFormValid() {
+      return this.prodName && this.quantity && this.amount && this.category && this.prodURL && this.prodDescription;
+    }
+  },
 
+  methods: {
+    addProducts() {
+      if (this.isFormValid) {
+        this.$store.dispatch('addProducts', this.$data).then(() => {
+          const modal = Modal.getInstance(document.getElementById('addProductModal'));
+          modal.hide();
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Please fill in all the fields",
+        });
+      }
+    }
+  }
 }
 </script>
 

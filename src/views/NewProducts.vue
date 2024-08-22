@@ -20,12 +20,12 @@
           <input class="form-control" type="text" placeholder="Search by product name" id="searchInput" v-model="searchQuery">
         </form>
         <div class="buttons">
-          <button class="product-button" @click="sortByPrice">Sort Price</button>
+          <button class="product-button" @click="sortProducts"> {{ sortButtonText }}</button>
           <button class="product-button" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasScrolling" aria-controls="offcanvasScrolling">Filter</button>
 
           <div class="offcanvas offcanvas-end" data-bs-scroll="true" data-bs-backdrop="false" tabindex="-1" id="offcanvasScrolling" aria-labelledby="offcanvasScrollingLabel">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter by Category</h5>
+              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Filter By Category</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -77,18 +77,34 @@ export default {
     return {
       selectedCategory: 'All',
       searchQuery: '',  
-      loading: true 
-    };
+      loading: true,
+      isToggle: false,
+      sortButtonText: 'Sort Price'
+    }
   },
 
   methods: {
-    sortByPrice() {
-      this.$store.state.recentProducts.sort((a, b) => {
-        return a.amount.localeCompare(b.amount);
-      });
-    },
+    //Filter by category
     filterByCategory(category) {
       this.selectedCategory = category;
+    },
+    //Sort Price
+    sortProducts() {
+      if (!this.$store.state.recentProducts) {
+        alert('Please try again later');
+        return;
+      }
+      if (this.sortButtonText === 'Sort Price') {
+        this.$store.state.recentProducts.sort((a, b) => a.amount - b.amount);
+        this.sortButtonText = 'PRICE: LOW TO HIGH';
+      } else if (this.sortButtonText === 'PRICE: LOW TO HIGH') {
+        this.$store.state.recentProducts.sort((a, b) => b.amount - a.amount);
+        this.sortButtonText = 'PRICE: HIGH TO LOW';
+      } else {
+        this.$store.state.recentProducts.sort((a, b) => a.amount - b.amount);
+        this.sortButtonText = 'PRICE: LOW TO HIGH';
+      }
+      this.isToggle = !this.isToggle;
     }
   },
 
@@ -205,12 +221,13 @@ export default {
   background-color: var(--alternative);
   border: 1px solid var(--primary);
   border-radius: 0.5rem;
-  width: 10rem;
+  width: 14rem;
   padding: 0.5rem;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+  margin-top: 1rem;
 }
 
 .product-button:hover{
